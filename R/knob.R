@@ -4,12 +4,15 @@ knob <- function(title, value, min, max, width = NULL, height = NULL, ...){
     width = width, height = height, ...               
   )
   params = Filter(Negate(is.null), params)
-  structure(params, class = c('knob', 'htmlwidget'))
+  structure(params,
+    class = c('knob', 'htmlwidget'),
+    fillViewer = TRUE
+  )
 }
 
 #' @export
 widget_html.knob <- function(x, id, style, class){
-  tags$input(type = "text", class = class, id = id)
+  tags$input(type = "text", class = class, id = id, `data-readOnly` = TRUE)
 }
 
 #' @export
